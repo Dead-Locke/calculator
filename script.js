@@ -26,7 +26,6 @@ backspace.onclick= () => currDisplay.innerText = currDisplay.innerText.slice(0,-
 clearBtn.onclick =() => clear();
 
 function setOperator(button) {
-    if(currDisplay.innerText == '') return;
     if(operator != undefined && currDisplay.innerText != ''){
         if(zeroDivision){ dividedByZero(); return}
         currOperand = +currDisplay.innerText
@@ -35,10 +34,11 @@ function setOperator(button) {
         prevOperand = +answer.toFixed(3)
     }
     else if(currDisplay.innerText != ''){ prevOperand =  +currDisplay.innerText;} 
-
+    if(prevOperand == undefined) return;
     operator = (button.id == 'exponent') ? '^' : button.innerText;
     prevDisplay.textContent = prevOperand + operator;
     currDisplay.textContent = '';
+    
 }
 
 function equal() {
@@ -62,6 +62,8 @@ function clear(){
     zeroDivision = false;
     prevDisplay.innerText =''
     currDisplay.innerText =''
+    prevOperand = undefined
+    currOperand = undefined
     operator = undefined; 
 }
 
