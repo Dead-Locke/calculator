@@ -26,39 +26,42 @@ backspace.onclick= () => currDisplay.innerText = currDisplay.innerText.slice(0,-
 clearBtn.onclick =() => clear();
 
 function setOperator(button) {
+    if(currDisplay.innerText == '') return;
     if(operator != undefined && currDisplay.innerText != ''){
         if(zeroDivision){ dividedByZero(); return}
         currOperand = +currDisplay.innerText
-        let answer = calculate(prevOperand, currOperand, operator).toFixed(4)
-        prevOperand = +answer 
+        let answer = calculate(prevOperand, currOperand, operator)
+        // answer = (+answer > 10000000 || +answer < .0001) ? +answer.toExponential(3): +answer.toFixed(3);
+        prevOperand = +answer.toFixed(3)
     }
     else if(currDisplay.innerText != ''){ prevOperand =  +currDisplay.innerText;} 
 
     operator = (button.id == 'exponent') ? '^' : button.innerText;
-    prevDisplay.innerText = prevOperand + operator;
-    currDisplay.innerText = '';
+    prevDisplay.textContent = prevOperand + operator;
+    currDisplay.textContent = '';
 }
 
 function equal() {
     if(currDisplay.innerText == '' || operator == undefined ) return;
     currOperand = +currDisplay.innerText
-    let answer = calculate(prevOperand, currOperand, operator).toFixed(4)
+    let answer = calculate(prevOperand, currOperand, operator)
     if(zeroDivision){ dividedByZero(); return}
     prevDisplay.innerText = `${prevOperand} ${operator} ${currOperand} =`;
-    prevOperand = +answer;
-    currDisplay.innerText = +answer;
+    prevOperand = +answer.toFixed(3);
+    currDisplay.textContent = +answer.toFixed(3);
     operator = undefined;      
 }
 
 function append(value){
-    currDisplay.innerText += value; 
+    if(currDisplay.textContent.length < 18)
+        currDisplay.textContent += value; 
 }
 
 function clear(){
     allButtons.forEach(btn => btn.disabled = false);
     zeroDivision = false;
     prevDisplay.innerText =''
-    currDisplay.innerText ='';
+    currDisplay.innerText =''
     operator = undefined; 
 }
 
@@ -69,7 +72,7 @@ function calculate(a, b, opr){
     if(opr == '×') return a*b;
     if(opr == '^') return a**b;
     if(opr == '÷'){
-        if (b === 0){zeroDivision = true; return }
+        if (b === 0){zeroDivision = true; return; }
         return a/b;
         }
 }
