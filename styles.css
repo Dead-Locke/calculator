@@ -29,6 +29,7 @@ main{
     font-family: 'digital_dreamregular';
     display: flex;
     flex-direction: column;
+    background-color:rgb(29, 27, 27);
     border: 2px solid gray;
     margin: 20px;
     padding: 2px;
