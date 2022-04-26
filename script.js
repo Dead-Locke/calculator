@@ -57,9 +57,10 @@ function equal() {
 }
 
 function append(value){
-    if(currDisplay.textContent.length < 18) //limit to prevent screen overflow
+    if(currDisplay.textContent.length < 18){ //limit to prevent screen overflow
         if(currDisplay.innerText.includes('.') && value == '.') return; //only one decimal allowed
-        currDisplay.textContent += value; 
+        currDisplay.textContent += value;
+        } 
 }
 
 function clear(){
