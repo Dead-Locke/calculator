@@ -1,5 +1,7 @@
 # Calculator Project
 ## Third project from [The Odin Project](https://www.theodinproject.com/lessons/foundations-calculator) curriculum. 
+---
+![calc-thumbnail](images/calculatorT.png)
 
 This project is a fully functioning calculator with the capabilities found on all simple calculators. It should be able to receive an input of numbers and basic mathematical operations (+, - , *, /) and evaluate the input accurately. **The calculator should not evaluate more than a single pair of numbers at a time.**   Additionally, the [eval() function should not be used.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#Never_use_eval!)
 
